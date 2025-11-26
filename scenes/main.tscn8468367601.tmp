@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=3 uid="uid://csy3p78bu7btb"]
+
+[ext_resource type="Texture2D" uid="uid://br3wmtndd8w4w" path="res://flappy bird/sprites/background-night.png" id="1_o5qli"]
+[ext_resource type="Script" uid="uid://5h8r20pm0jpb" path="res://scenes/main.gd" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://nd3quab3t0m7" path="res://scenes/pipe.tscn" id="2_tbgi4"]
+[ext_resource type="PackedScene" uid="uid://rirlv7h70kv0" path="res://scenes/bird.tscn" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://japuk4eh7g62" path="res://scenes/ground.tscn" id="3_tbgi4"]
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_sugp2")
+pipe_scene = ExtResource("2_tbgi4")
+
+[node name="background" type="Sprite2D" parent="."]
+scale = Vector2(1.4298002, 1.4071999)
+texture = ExtResource("1_o5qli")
+offset = Vector2(149, 251)
+
+[node name="bird" parent="." instance=ExtResource("3_jyhfs")]
+
+[node name="ground" parent="." instance=ExtResource("3_tbgi4")]
+scale = Vector2(2.1294217, 1.7074852)
+
+[node name="pipetimer" type="Timer" parent="."]
+wait_time = 1.5
+
+[connection signal="timeout" from="pipetimer" to="." method="_on_pipetimer_timeout"]

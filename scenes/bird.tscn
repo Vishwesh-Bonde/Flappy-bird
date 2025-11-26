@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://rirlv7h70kv0"]
+
+[ext_resource type="Script" uid="uid://bqipetk7bm3a6" path="res://scenes/bird.gd" id="1_twsrt"]
+[ext_resource type="Texture2D" uid="uid://de00s3afrk826" path="res://flappy bird/sprites/bluebird-downflap.png" id="2_b7mtg"]
+[ext_resource type="Texture2D" uid="uid://dng0wax1bqa1n" path="res://flappy bird/sprites/bluebird-midflap.png" id="3_bdh3x"]
+[ext_resource type="Texture2D" uid="uid://cibdxb5h8m01a" path="res://flappy bird/sprites/bluebird-upflap.png" id="4_jggmu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hrcfq"]
+radius = 6.7067466
+height = 13.413493
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ehebh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_b7mtg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bdh3x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jggmu")
+}],
+"loop": true,
+"name": &"flying",
+"speed": 5.0
+}]
+
+[node name="bird" type="CharacterBody2D"]
+scale = Vector2(1, 0.97894734)
+script = ExtResource("1_twsrt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2.340268, 1.9800317)
+shape = SubResource("CapsuleShape2D_hrcfq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ehebh")
+animation = &"flying"

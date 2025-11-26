@@ -1,0 +1,53 @@
+[gd_scene load_steps=8 format=3 uid="uid://nd3quab3t0m7"]
+
+[ext_resource type="Texture2D" uid="uid://ci7dmlhtj55vy" path="res://flappy bird/sprites/pipe-green - Copy.png" id="1_arpqm"]
+[ext_resource type="Script" uid="uid://bcevnd23w03fl" path="res://scenes/pipe.gd" id="1_ejsh2"]
+[ext_resource type="Texture2D" uid="uid://blmgg4tmrrkm0" path="res://flappy bird/sprites/pipe-green.png" id="2_8p0di"]
+[ext_resource type="Script" uid="uid://dsxk76vol6mn7" path="res://scenes/collision_shape_2d_2.gd" id="4_4ybk5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ejsh2"]
+size = Vector2(4027.1223, 629.64746)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ybk5"]
+size = Vector2(82, 535)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tdldm"]
+size = Vector2(20, 166)
+
+[node name="pipe" type="Area2D" groups=["pipes"]]
+script = ExtResource("1_ejsh2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -88)
+scale = Vector2(1.6370625, 1.6983075)
+texture = ExtResource("1_arpqm")
+offset = Vector2(0, 250)
+flip_h = true
+flip_v = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.99999976, 337)
+rotation = -3.1415925
+scale = Vector2(0.019616984, -0.87032825)
+shape = SubResource("RectangleShape2D_ejsh2")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(2, -342)
+shape = SubResource("RectangleShape2D_4ybk5")
+script = ExtResource("4_4ybk5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, 84)
+scale = Vector2(1.8643322, 1.6887693)
+texture = ExtResource("2_8p0di")
+offset = Vector2(0, -250)
+flip_v = true
+
+[node name="scoreaera" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="scoreaera"]
+position = Vector2(78, -7)
+shape = SubResource("RectangleShape2D_tdldm")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_entered" from="scoreaera" to="." method="_on_scoreaera_body_entered"]
